@@ -1,55 +1,46 @@
 #include <iostream>
 #include <string>
-using namespace std;
-float Valor;
-int oper;
-float res;
 
-float DR(float Valor) {
-    float R;
-    R = Valor * 5.39f;
-    return R;
-}
-float DE(float Valor) {
-    float R;
-    R = Valor / 1.16f;
-    return R;
-}
-float RD(float Valor) {
-    float R;
-    R = Valor / 5.39f;
-    return R;
-}
-float RE(float Valor) {
-    float R;
-    R = Valor / 5.39f;
-    return R;
-}
-float ER(float Valor) {
-    float R;
-    R = Valor * 5.39f;
-    return R;
-}
-float ED(float Valor) {
-    float R;
-    R = Valor * 1.16f;
-    return R;
+using namespace std;
+
+// Taxas:
+const float USD_BRL = 5.39f;
+const float USD_EUR = 0.86f;
+const float BRL_USD = 0.19f;
+const float BRL_EUR = 0.16f;
+const float EUR_BRL = 6.27f;
+const float EUR_USD = 1.16f;
+
+// Função de conversão:
+float conversao(float valor, float taxa) {
+    return valor * taxa;
 }
 
 int main()
 {
+    int oper;
+    float valor, res;
     while (true) {
-        float B;
+// Seleção de execução:
         system("cls");
-        cout << "\t\tConversao de moedas!!\n";
-        cout << "Selecione a operacao!\n" << "1 - Dolar para Real\n" << "2 - Dolar para Euro\n" << "3 - Real para Dolar\n" << "4 - Real para Euro\n" << "5 - Euro para Real\n" << "6 - Euro para Dolar\n";
+        cout << "Conversao de moedas!!\n\n";
+        cout << "Selecione a operacao!\n\n";
+        cout << "1 - Dolar para Real\n";
+        cout << "2 - Dolar para Euro\n";
+        cout << "3 - Real para Dolar\n";
+        cout << "4 - Real para Euro\n";
+        cout << "5 - Euro para Real\n";
+        cout << "6 - Euro para Dolar\n\n";
+        cout << "0 - Sair\n";
         cin >> oper;
+
+// Execução da operação:
         switch (oper) {
         case 1:
             system("cls");
             cout << "Insira valor em Dolares!\n";
-            cin >> B;
-            res = DR(B);
+            cin >> valor;
+            res = conversao(valor, USD_BRL);
             system("cls");
             cout << "Resultado da Operacao: " << res << " BRL\n";
             system("pause");
@@ -57,8 +48,8 @@ int main()
         case 2:
             system("cls");
             cout << "Insira valor em Dolares!\n";
-            cin >> B;
-            res = DE(B);
+            cin >> valor;
+            res = conversao(valor, USD_EUR);
             system("cls");
             cout << "Resultado da Operacao: " << res << " EUR\n";
             system("pause");
@@ -66,8 +57,8 @@ int main()
         case 3:
             system("cls");
             cout << "Insira valor em Reais!\n";
-            cin >> B;
-            res = RD(B);
+            cin >> valor;
+            res = conversao(valor, BRL_USD);
             system("cls");
             cout << "Resultado da Operacao: " << res << " USD\n";
             system("pause");
@@ -75,8 +66,8 @@ int main()
         case 4:
             system("cls");
             cout << "Insira valor em Reais!\n";
-            cin >> B;
-            res = RE(B);
+            cin >> valor;
+            res = conversao(valor, BRL_EUR);
             system("cls");
             cout << "Resultado da Operacao: " << res << " EUR\n";
             system("pause");
@@ -84,8 +75,8 @@ int main()
         case 5:
             system("cls");
             cout << "Insira valor em Euros!\n";
-            cin >> B;
-            res = ER(B);
+            cin >> valor;
+            res = conversao(valor, EUR_BRL);
             system("cls");
             cout << "Resultado da Operacao: " << res << " BRL\n";
             system("pause");
@@ -93,12 +84,15 @@ int main()
         case 6:
             system("cls");
             cout << "Insira valor em Euros!\n";
-            cin >> B;
-            res = ED(B);
+            cin >> valor;
+            res = conversao(valor, EUR_USD);
             system("cls");
             cout << "Resultado da Operacao: " << res << " USD\n";
             system("pause");
             break;
         }
+// Quebrar loop ao inserir 0:
+        if (oper == 0) exit(0);
     }
+    return 1;
 }
